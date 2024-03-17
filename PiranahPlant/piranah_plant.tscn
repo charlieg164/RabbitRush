@@ -1,0 +1,157 @@
+[gd_scene load_steps=22 format=3 uid="uid://dy4554uucwhh3"]
+
+[ext_resource type="Texture2D" uid="uid://pe0j6hn6w5tv" path="res://Enemies/PiranahPlant/piranha-plant-attack.png" id="1_40odx"]
+[ext_resource type="Script" path="res://Enemies/PiranahPlant/piranah_plant.gd" id="1_cauhq"]
+[ext_resource type="Texture2D" uid="uid://j3b7x5pilwl3" path="res://Enemies/PiranahPlant/piranha-plant.png" id="1_ngqob"]
+[ext_resource type="Texture2D" uid="uid://bq5mjphgj318i" path="res://World/Assets/props/enemy-death-1.png" id="3_6q827"]
+[ext_resource type="Texture2D" uid="uid://dx84ra26ce6uq" path="res://World/Assets/props/enemy-death-2.png" id="4_fu81y"]
+[ext_resource type="Texture2D" uid="uid://ca0wxhg8palt7" path="res://World/Assets/props/enemy-death-3.png" id="5_bxl0v"]
+[ext_resource type="Texture2D" uid="uid://yo1tk673hv07" path="res://World/Assets/props/enemy-death-4.png" id="6_u1gga"]
+[ext_resource type="Texture2D" uid="uid://ewyfjgevbffg" path="res://World/Assets/props/enemy-death-5.png" id="7_xkjoc"]
+[ext_resource type="Texture2D" uid="uid://v61m1wnjvie8" path="res://World/Assets/props/enemy-death-6.png" id="8_xnb5t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ybue"]
+atlas = ExtResource("1_40odx")
+region = Rect2(0, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar5fv"]
+atlas = ExtResource("1_40odx")
+region = Rect2(61, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijop4"]
+atlas = ExtResource("1_40odx")
+region = Rect2(122, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na475"]
+atlas = ExtResource("1_40odx")
+region = Rect2(183, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvfd5"]
+atlas = ExtResource("1_ngqob")
+region = Rect2(0, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5ptk"]
+atlas = ExtResource("1_ngqob")
+region = Rect2(61, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pteg"]
+atlas = ExtResource("1_ngqob")
+region = Rect2(122, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huj8n"]
+atlas = ExtResource("1_ngqob")
+region = Rect2(183, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vua6t"]
+atlas = ExtResource("1_ngqob")
+region = Rect2(244, 0, 61, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yo2xw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ybue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar5fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijop4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijop4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na475")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na475")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na475")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6q827")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fu81y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bxl0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u1gga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xkjoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xnb5t")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvfd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5ptk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pteg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huj8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vua6t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5dhc"]
+size = Vector2(20, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5yoo"]
+size = Vector2(20, 12)
+
+[node name="PiranahPlant" type="Area2D"]
+script = ExtResource("1_cauhq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.25, 0)
+scale = Vector2(0.991803, 1)
+sprite_frames = SubResource("SpriteFrames_yo2xw")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -13.5)
+shape = SubResource("RectangleShape2D_f5dhc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-19, -1)
+shape = SubResource("RectangleShape2D_n5yoo")
+
+[node name="Timer2" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
